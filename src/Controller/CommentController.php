@@ -4,11 +4,12 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CommentController extends AbstractController
 {
     /**
-     * @Route('/comment/{id}/vote/{direction}')
+     * @Route("/comment/{id}/vote/{direction}")
      */
     public function commentVote($id, $direction)
     {
@@ -18,6 +19,7 @@ class CommentController extends AbstractController
             $currentVoteCount = rand(0, 5);
         }
 
-        return new $this->json(['votes' => $currentVoteCount]);
+//        return new $this->json(['votes' => $currentVoteCount]);
+        return new JsonResponse(['votes' => $currentVoteCount]);
     }
 }
