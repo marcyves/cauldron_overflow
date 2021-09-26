@@ -8,15 +8,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="app_homepage")
      */
     public function homepage ()
     {
-        return new Response('What  betwitching controller');
+        return $this->render('question/homepage.html.twig');
     }
 
     /**
-     * @Route("/question/{slug}")
+     * @Route("/question/{slug}", name="app_question")
      */
     public function show($slug)
     {
@@ -25,6 +25,8 @@ class QuestionController extends AbstractController
             'Honestly, I like furry shoes better than MY cat',
             'Maybe... try saying the spell backwards?',
         ];
+
+        dump($slug, $this);
 
         return $this->render('question/show.html.twig', [
             'question' => ucwords(str_replace('-', ' ', $slug)),
